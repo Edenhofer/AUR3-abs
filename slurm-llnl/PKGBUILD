@@ -11,7 +11,7 @@ license=('GPL')
 url="http://www.schedmd.com"
 depends=('python2' 'libmysqlclient>=5.0.0' 'postgresql-libs' 'munge' 'lua' 'hwloc')
 makedepends=('openssl>=0.9.6' 'readline' 'lua')
-optdepends=('gtk2')
+optdepends=('gtk2: enables a simple graphical frontend')
 provides=('slurm')
 install=${pkgname}.install
 source=("slurm-tmpfiles.conf"
