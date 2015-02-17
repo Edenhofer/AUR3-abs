@@ -30,5 +30,5 @@ package() {
   find "${pkgdir}" -type f -exec chmod 644 "{}" \;
 
   cd "$pkgdir"
-  rm -rf {.git,CREDITS,LICENSE,README.md,README}
+  rm -rf {.git,CREDITS,LICENSE,README,README.md}
 }
