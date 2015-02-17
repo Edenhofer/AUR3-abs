@@ -23,6 +23,6 @@ pkgver() {
 package() {
   cd "$srcdir/$pkgname"
   install -d -m 755 "$pkgdir"/usr/share/icons/Flattr
-  rm -rf {.git,.gitignore,CONTRIBUTORS,COPYING,CREDITS,LICENSE.txt,README.md}
+  rm -rf {.git,.gitignore,CONTRIBUTORS,CREDITS,LICENSE,README.md}
   cp -dr . "$pkgdir"/usr/share/icons/Flattr/
 }
