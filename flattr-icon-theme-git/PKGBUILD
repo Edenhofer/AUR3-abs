@@ -24,8 +24,8 @@ pkgver() {
 package() {
   cd "$srcdir/$pkgname"
   install -d -m 755 "$pkgdir"/usr/share/icons/$_realname
-  install -d -m 755 "$pkgdir"/usr/share/licenses/$_realname
-  cp LICENSE "$pkgdir"/usr/share/licenses/$_realname/
+  install -d -m 755 "$pkgdir"/usr/share/licenses/$pkgname
+  cp LICENSE "$pkgdir"/usr/share/licenses/$pkgname/
   rm -rf {.git,.gitignore,CONTRIBUTORS,CREDITS,LICENSE,README.md}
   cp -dr . "$pkgdir"/usr/share/icons/$_realname/
 }
