@@ -19,12 +19,18 @@ post_install() {
   echo -e "\e[34;1m==>\e[39;1m If you are using slurmdbd please remember to \e[0m"
   echo -e "\e[34;1m==>\e[39;1m  * edit slurmdbd.conf : change /var/run to /run \e[0m"
   echo -e "\e[34;1m==>\e[39;1m  * create /var/log/slurm \e[0m"
-  echo
   echo -e "\e[34;1m==>\e[39;1m If you add any optional dependencies later you \e[0m"
   echo -e "\e[34;1m==>\e[39;1m must recompile slurm-llnl. \e[0m"
-  echo
 }
 
+## arg 1:  the new package version
+## arg 2:  the old package version
+post_upgrade() {
+  echo -e "\e[34;1m==>\e[39;1m NOTE: If you add any optional dependencies later \e[0m"
+  echo -e "\e[34;1m==>\e[39;1m you must recompile slurm-llnl. \e[0m"
+}
+
+## arg 1:  the old package version
 pre_remove() {
   which systemctl >& /dev/null
   if [ $? -eq 0 ]; then

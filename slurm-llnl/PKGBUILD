@@ -11,7 +11,6 @@ license=('GPL')
 url="http://www.schedmd.com"
 # python2 is not required by slurm itself but is used in a patch file - TODO fix later
 depends=('python2' 'munge')
-makedepends=('openssl')
 optdepends=("hwloc: enables the task/cgroup plugin"
             "lua: the lua API will be available in various plugins"
             "libmariadbclient: support for accounting"
