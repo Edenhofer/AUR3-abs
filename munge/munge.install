@@ -1,5 +1,6 @@
 ## arg 1:  the new package version
 post_install() {
+  # the installation process is described at https://code.google.com/p/munge/wiki/InstallationGuide
   # create munge dirs
   mkdir -p /var/{lib,log,run}/munge
 
@@ -31,6 +32,12 @@ post_install() {
   /bin/chown munge.munge -R /var/log/munge
   /bin/chown munge.munge -R /var/lib/munge
   /bin/chown munge.munge -R /var/run/munge
+
+  # securing the installation
+  #/usr/bin/chmod 0700 /etc/munge
+  #/usr/bin/chmod 0711 /var/lib/munge
+  #/usr/bin/chmod 0700 /var/log/munge
+  #/usr/bin/chmod 0755 /var/run/munge
 }
 
 post_upgrade() {
