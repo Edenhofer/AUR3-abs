@@ -14,7 +14,7 @@ provides=('munge')
 install=${pkgname}.install
 source=("http://munge.googlecode.com/files/$pkgname-$pkgver.tar.bz2" "arch_munge.init" "munged-tmpfiles.conf" "munged.service" )
 md5sums=('bd8fca8d5f4c1fcbef1816482d49ee01'
-         '02b822cb61629468518e431daeb834bb'
+         '668942f323275199d35db5a534d9a80e'
          'b6e6a73c8a678777645ffcdb4b3e9d27'
          '60a113924e76f88d7fe1b164d18c3d8e')
 

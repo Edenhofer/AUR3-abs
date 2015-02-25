@@ -1,4 +1,9 @@
-me=munge
+#!/bin/bash
+
+. /etc/rc.conf
+. /etc/rc.d/functions
+
+daemon_name=munge
 USER=munge
 [ -x /etc/default/munge ] && . /etc/default/munge
 
