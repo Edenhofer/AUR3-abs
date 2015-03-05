@@ -1,5 +1,5 @@
 [Unit]
-Description=Central management daemon for Slurm
+Description=SLURM central management daemon
 After=network.target auditd.service munge.service slurmdbd.service
 Requires=munge.service
 

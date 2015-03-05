@@ -1,5 +1,5 @@
 [Unit]
-Description=Slurm Database Daemon
+Description=SLURM database daemon
 After=mysqld.service
 Before=slurmctld.service
 Requires=mysqld.service
