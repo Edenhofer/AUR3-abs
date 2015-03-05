@@ -1,7 +1,7 @@
 [Unit]
-Description=Start/Stop the SLURMCTLD service
-After=network.target auditd.service munged.service slurmdbd.service
-Requires=munged.service
+Description=Central management daemon for Slurm
+After=network.target auditd.service munge.service slurmdbd.service
+Requires=munge.service
 
 [Service]
 Type=forking

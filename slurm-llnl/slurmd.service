@@ -1,5 +1,5 @@
 [Unit]
-Description=Start/Stop the SLURM service
+Description=Compute node daemon for SLURM
 After=systemd-tmpfiles-clean.service
 
 [Service]
