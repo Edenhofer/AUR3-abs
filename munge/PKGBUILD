@@ -50,7 +50,4 @@ package() {
   # because it is bad practice to put package-files in /run
   /bin/rmdir $pkgdir/var/run/munge
   /bin/rmdir $pkgdir/var/run
-
-  # install license file
-  install -D -m644 COPYING "$pkgdir/usr/share/licenses/$pkgname/COPYING"
 }
