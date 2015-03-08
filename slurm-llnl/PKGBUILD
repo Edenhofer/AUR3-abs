@@ -41,6 +41,7 @@ build() {
   # set CFLAGS and LDFLAGS environment variables accordingly.
   # Optional Slurm plugins will be built automatically when the configure script
   # detects that the required build requirements are present.
+  # 
   # Read http://slurm.schedmd.com/quickstart_admin.html for more information
 
   ./configure \
