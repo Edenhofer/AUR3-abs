@@ -29,14 +29,16 @@ optdepends=("hwloc: enables the task/cgroup plugin"
             "gtk2: enables the sview command, a simple graphical frontend")
 install=${pkgname}.install
 source=("slurm-tmpfiles.conf"
+        "slurm-llnl-default-conf"
         "slurmctld.service.patch"
         "slurmd.service.patch"
         "slurmdbd.service.patch"
         "http://www.schedmd.com/download/total/slurm-${pkgver}.tar.bz2")
 md5sums=('51e4ae2c51edf7c145d1b87bec4c344e'
-         'c5bf610bf15db254116a59e2932f5692'
-         '7d1c8fca6a19b82c5f007ad3dd33c8e0'
-         'd46003093a40141ac264ffc7845e90a8'
+         'cae664b8ef44d01783dade9088e25b53'
+         'b3a7ea9b29fd7875a8dac94cd46279b2'
+         '8ae04b2968eb5651b69674202b1c3f5f'
+         '4446dce91c8952047dccaf368b36ef11'
          '6b7dc7e96fffa1f21bc68aac4949eb54')
 
 
@@ -84,4 +86,6 @@ package() {
   install -D -m644 etc/slurmctld.service  "${pkgdir}/usr/lib/systemd/system/slurmctld.service"
   install -D -m644 etc/slurmdbd.service   "${pkgdir}/usr/lib/systemd/system/slurmdbd.service"
   install -D -m644 ../slurm-tmpfiles.conf "${pkgdir}/etc/tmpfiles.d/slurm-tmpfiles.conf"
+
+  install -D -m644 ../slurm-llnl-default-conf "${pkgdir}/etc/default/slurm-llnl"
 }

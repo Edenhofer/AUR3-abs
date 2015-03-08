@@ -13,7 +13,8 @@
 -EnvironmentFile=/etc/default/slurmctld
 -ExecStart=/usr/bin/slurmctld $SLURMCTLD_OPTIONS
 +Type=simple
-+ExecStart=/usr/bin/slurmctld -D
++EnvironmentFile=/etc/default/slurm-llnl
++ExecStart=/usr/bin/slurmctld -D $SLURMCTLD_OPTIONS
  PIDFile=/var/run/slurm/slurmctld.pid
 
  [Install]
