@@ -1,6 +1,6 @@
---- ./etc/slurmctld.service	2015-03-08 16:14:00.206686896 +0100
-+++ ./etc/slurmctld.service	2015-03-08 16:33:20.826615203 +0100
-@@ -1,12 +1,12 @@
+--- ./etc/slurmctld.service	2015-03-08 17:43:36.454825605 +0100
++++ ./etc/slurmctld.service	2015-03-08 17:50:02.353405414 +0100
+@@ -1,12 +1,13 @@
  [Unit]
  Description=Slurm controller daemon
 -After=network.target
