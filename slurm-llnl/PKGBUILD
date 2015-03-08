@@ -4,13 +4,13 @@
 
 pkgname=slurm-llnl
 pkgver=14.11.4
-pkgrel=1
+pkgrel=2
 pkgdesc="Simple Linux Utility for Resource Management"
 arch=('i686' 'x86_64')
 license=('GPL')
 url="http://www.schedmd.com"
-# python2 is not required by slurm itself but is used in a patch file
 depends=('munge')
+makedepends=('python2')
 optdepends=("hwloc: enables the task/cgroup plugin"
             "lua: the lua API will be available in various plugins"
             "libmariadbclient: support for accounting"
@@ -52,6 +52,7 @@ build() {
   cd "$srcdir/slurm-${pkgver}${_subver}"
 
   patch -p0 -i ../shtml2html.py.patch
+  patch -p0 -i ../man2html.py.patch
 
   # If required libraries or header files are in non-standard locations,
   # set CFLAGS and LDFLAGS environment variables accordingly.
@@ -74,8 +75,8 @@ package() {
   make DESTDIR="$pkgdir/" install
 
   # slurm configs and license
-  install -D -m644 etc/slurm.conf.example    "${pkgdir}/etc/slurm/slurm.conf.example"
-  install -D -m644 etc/slurmdbd.conf.example "${pkgdir}/etc/slurm/slurmdbd.conf.example"
+  install -D -m644 etc/slurm.conf.example    "${pkgdir}/etc/slurm-llnl/slurm.conf.example"
+  install -D -m644 etc/slurmdbd.conf.example "${pkgdir}/etc/slurm-llnl/slurmdbd.conf.example"
   install -D -m644 LICENSE.OpenSSL           "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.OpenSSL"
   install -D -m644 COPYING                   "${pkgdir}/usr/share/licenses/${pkgname}/COPYING"
 
