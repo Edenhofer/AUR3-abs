@@ -88,4 +88,7 @@ package() {
   install -D -m644 ../slurm-tmpfiles.conf "${pkgdir}/etc/tmpfiles.d/slurm-tmpfiles.conf"
 
   install -D -m644 ../slurm-llnl-default-conf "${pkgdir}/etc/default/slurm-llnl"
+
+  # creating a log dir
+  install -d -m755 "${pkgdir}/var/log/slurm-llnl"
 }

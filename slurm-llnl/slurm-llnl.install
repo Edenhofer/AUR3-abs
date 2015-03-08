@@ -14,23 +14,26 @@ post_install() {
     passwd -l slurm &>/dev/null
   fi
 
+  # securing the log dir
+  if [ -d /var/log/slurm-llnl ]; then
+    chown -R slurm:slurm /var/log/slurm-llnl
+  fi
+
   echo
-  echo -e "\e[34;1m==>\e[39;1m NOTES \e[0m"
-  echo -e "\e[34;1m==>\e[39;1m If you are using slurmdbd please remember to \e[0m"
-  echo -e "\e[34;1m==>\e[39;1m  * edit slurmdbd.conf : change /var/run to /run \e[0m"
-  echo -e "\e[34;1m==>\e[39;1m  * create /var/log/slurm \e[0m"
-  echo -e "\e[34;1m==>\e[39;1m If you add any optional dependencies later you \e[0m"
-  echo -e "\e[34;1m==>\e[39;1m must recompile slurm-llnl. \e[0m"
+  echo -e "\e[34;1m==>\e[39;1m NOTE: You have to create a slurm configuration-file in /etc/slurm-llnl/ \e[0m"
+  echo -e "\e[34;1m==>\e[39;1m \tprior to starting slurm or slurmctld \e[0m"
+  echo -e "\e[34;1m==>\e[39;1m NOTE: In order for new optional dependencies to be taken into account \e[0m"
+  echo -e "\e[34;1m==>\e[39;1m \tslurm-llnl has to be recompiled. \e[0m"
 }
 
 ## arg 1:  the new package version
 ## arg 2:  the old package version
 post_upgrade() {
   echo -e "\e[34;1m==>\e[39;1m NOTE: In order for new optional dependencies to be taken into account \e[0m"
-  echo -e "\e[34;1m==>\e[39;1m slurm-llnl has to be recompiled. \e[0m"
+  echo -e "\e[34;1m==>\e[39;1m \tslurm-llnl has to be recompiled. \e[0m"
 
-  # THIS HAS TO BE DELETED ONEDAY - TODO
-  if [ -f /etc/slurm/slurm.conf.example ]; then
+  # THIS HAS TO BE REMOVED ONEDAY - TODO
+  if [ -f /etc/slurm/slurm.conf ]; then
     mv /etc/slurm/* /etc/slurm-llnl/
     rmdir /etc/slurm
     echo -e "\e[34;1m==>\e[39;1m Your configuration-files were moved from /etc/slurm to /etc/slurm-llnl ! \e[0m"
@@ -59,6 +62,9 @@ pre_remove() {
 post_remove() {
   echo -e "\e[34;1m==>\e[39;1m Removing slurm system user/group... \e[0m"
   userdel slurm
+
+  # cleaning up for sure
+  rm -rf /etc/slurm-llnl /var/log/slurm-llnl
 }
 
 # vim:set ts=2 sw=2 et:
