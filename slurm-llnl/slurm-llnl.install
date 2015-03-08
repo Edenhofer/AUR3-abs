@@ -3,12 +3,12 @@ post_install() {
   id slurm >&/dev/null
   if [ $? -ne 0 ]; then
     echo -e "\e[34;1m==>\e[39;1m Adding slurm system group... \e[0m"
-    groupadd -r slurm
+    groupadd -g 64030 -r slurm
+    [ $? -eq 0 ] || groupadd -r slurm
 
     echo -e "\e[34;1m==>\e[39;1m Adding slurm system user... \e[0m"
-    uidopt=""
-    [ -v SLURM_USER_ID ] && uidopt="-u ${SLURM_USER_ID}"
-    useradd -r -c "Slurm Daemon" -d /var/log/slurm -g slurm ${uidopt} slurm
+    useradd -r -c "Slurm Daemon" -d /var/log/slurm-llnl -g slurm -u 64030 slurm
+    [ $? -eq 0 ] || useradd -r -c "Slurm Daemon" -d /var/log/slurm-llnl -g slurm slurm
 
     echo -e "\e[34;1m==>\e[39;1m Locking Slurm User Account...\e[0m"
     passwd -l slurm &>/dev/null
