@@ -1,0 +1,18 @@
+--- ./etc/slurmd.service	2015-03-08 16:14:00.236685961 +0100
++++ ./etc/slurmd.service	2015-03-08 16:30:52.981287398 +0100
+@@ -1,12 +1,11 @@
+ [Unit]
+ Description=Slurm node daemon
+-After=network.target
++After=network.target systemd-tmpfiles-clean.service
+ ConditionPathExists=/etc/slurm-llnl/slurm.conf
+
+ [Service]
+-Type=forking
+-EnvironmentFile=/etc/default/slurmd
+-ExecStart=/usr/bin/slurmd $SLURMD_OPTIONS
++Type=simple
++ExecStart=/usr/bin/slurmd -D
+ PIDFile=/var/run/slurm/slurmd.pid
+
+ [Install]
