@@ -10,7 +10,7 @@ arch=('i686' 'x86_64')
 license=('GPL')
 url="http://www.schedmd.com"
 depends=('munge')
-makedepends=('python2')
+makedepends=('python')
 optdepends=("hwloc: enables the task/cgroup plugin"
             "lua: the lua API will be available in various plugins"
             "libmariadbclient: support for accounting"
@@ -29,30 +29,13 @@ optdepends=("hwloc: enables the task/cgroup plugin"
             "gtk2: enables the sview command, a simple graphical frontend")
 install=${pkgname}.install
 source=("slurm-tmpfiles.conf"
-        "slurmdbd.service"
-        "slurmd.service"
-        "slurmctld.service"
-        "arch_rc.d.slurm"
-        "arch_rc.d.slurmdbd"
-        "shtml2html.py.patch"
-        "man2html.py.patch"
         "http://www.schedmd.com/download/total/slurm-${pkgver}.tar.bz2")
 md5sums=('51e4ae2c51edf7c145d1b87bec4c344e'
-         'a6b327c7eb4eacedfd76a5ff2051d1db'
-         '9dadad511bdae6a5909bdac3633127e2'
-         'e2060112ed689b791930892bca646290'
-         '677f66c6f33538daa46bae831c973763'
-         'e439cccf98d45c5551aa326984ba6e9b'
-         '9d8f907b340cedc28f6148fb8665f0c2'
-         'ae350b014821412ba06b936d673517c9'
          '6b7dc7e96fffa1f21bc68aac4949eb54')
 
 
 build() {
   cd "$srcdir/slurm-${pkgver}${_subver}"
-
-  patch -p0 -i ../shtml2html.py.patch
-  patch -p0 -i ../man2html.py.patch
 
   # If required libraries or header files are in non-standard locations,
   # set CFLAGS and LDFLAGS environment variables accordingly.
@@ -64,7 +47,7 @@ build() {
     --prefix=/usr \
     --sbindir=/usr/bin  \
     --sysconfdir=/etc/slurm-llnl  \
-    --localstatedir=/ \
+    --localstatedir=/var
 
   make
 }
@@ -81,12 +64,12 @@ package() {
   install -D -m644 COPYING                   "${pkgdir}/usr/share/licenses/${pkgname}/COPYING"
 
   # init related install
-  install -D -m755 ../arch_rc.d.slurm    "${pkgdir}/etc/rc.d/slurm"
-  install -D -m755 ../arch_rc.d.slurmdbd "${pkgdir}/etc/rc.d/slurmdbd"
+  install -D -m755 etc/init.d.slurm    "${pkgdir}/etc/rc.d/slurm"
+  install -D -m755 etc/init.d.slurmdbd "${pkgdir}/etc/rc.d/slurmdbd"
 
   # SystemD related install
-  install -D -m644 ../slurmd.service        "${pkgdir}/usr/lib/systemd/system/slurmd.service"
-  install -D -m644 ../slurmctld.service     "${pkgdir}/usr/lib/systemd/system/slurmctld.service"
-  install -D -m644 ../slurmdbd.service      "${pkgdir}/usr/lib/systemd/system/slurmdbd.service"
-  install -D -m644 ../slurm-tmpfiles.conf   "${pkgdir}/etc/tmpfiles.d/slurm-tmpfiles.conf"
+  install -D -m644 etc/slurmd.service     "${pkgdir}/usr/lib/systemd/system/slurmd.service"
+  install -D -m644 etc/slurmctld.service  "${pkgdir}/usr/lib/systemd/system/slurmctld.service"
+  install -D -m644 etc/slurmdbd.service   "${pkgdir}/usr/lib/systemd/system/slurmdbd.service"
+  install -D -m644 ../slurm-tmpfiles.conf "${pkgdir}/etc/tmpfiles.d/slurm-tmpfiles.conf"
 }
