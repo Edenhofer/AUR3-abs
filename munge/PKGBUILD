@@ -37,8 +37,8 @@ package() {
   make DESTDIR="$pkgdir/" install
 
   # install arch specific munge init and remove original one...
-  /bin/rm -f $pkgdir/etc/init.d/munge
-  /bin/rmdir $pkgdir/etc/init.d
+  rm -f $pkgdir/etc/init.d/munge
+  rmdir $pkgdir/etc/init.d
 
   install -D -m755 ../arch_munge.init $pkgdir/etc/rc.d/munge
   install -D -m644 ../munged-tmpfiles.conf $pkgdir/etc/tmpfiles.d/munged-tmpfiles.conf
@@ -48,6 +48,6 @@ package() {
 
   # /var/run/munge will be created in post install, see munge.install
   # because it is bad practice to put package-files in /run
-  /bin/rmdir $pkgdir/var/run/munge
-  /bin/rmdir $pkgdir/var/run
+  rmdir $pkgdir/var/run/munge
+  rmdir $pkgdir/var/run
 }
