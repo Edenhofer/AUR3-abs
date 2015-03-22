@@ -2,16 +2,16 @@
 # Submitter: Andreas Baumann <abaumann@yahoo.com>
 
 pkgname=pcc
-pkgver=20150322
+pkgver=1.1.0
 pkgrel=1
 pkgdesc="A Portable C Compiler"
 arch=('i686' 'x86_64')
 url="http://pcc.ludd.ltu.se/"
 license=('custom:BSD')
 depends=('pcc-libs')
-source=("http://pcc.ludd.ltu.se/ftp/pub/pcc/${pkgname}-${pkgver}.tgz"
+source=("http://pcc.ludd.ltu.se/ftp/pub/pcc-releases/${pkgname}-${pkgver}.tgz"
         "license")
-md5sums=('2b891aa28a5f93928b52609359752d9e'
+md5sums=('1c0f22440753075d64f9f2c6ed0e8278'
          '51f6cc02b26af53f26cfe87494ca5c87')
 
 build() {
