@@ -1,0 +1,34 @@
+# Maintainer: Gordian Edenhofer <gordian.edenhofer[at]yahoo[dot]de>
+# Submitter: Andreas Baumann <abaumann@yahoo.com>
+
+pkgname=pcc
+pkgver=20150322
+pkgrel=1
+pkgdesc="A Portable C Compiler"
+arch=('i686' 'x86_64')
+url="http://pcc.ludd.ltu.se/"
+license=('custom:BSD')
+depends=('pcc-libs')
+source=("http://pcc.ludd.ltu.se/ftp/pub/pcc/${pkgname}-${pkgver}.tgz"
+        "license")
+md5sums=('2b891aa28a5f93928b52609359752d9e'
+         '51f6cc02b26af53f26cfe87494ca5c87')
+
+build() {
+  cd ${srcdir}/${pkgname}-${pkgver}
+
+  ./configure \
+    --prefix=/usr
+
+  make
+}
+
+package(){
+  cd ${srcdir}/${pkgname}-${pkgver}
+
+  make DESTDIR=$pkgdir install
+
+  mv ${pkgdir}/usr/share/man/man1/cpp.1 ${pkgdir}/usr/share/man/man1/pcpp.1
+
+  install -D -m0644 ../license ${pkgdir}/usr/share/licenses/pcc/license
+}
