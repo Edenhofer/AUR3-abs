@@ -44,12 +44,12 @@ md5sums=('51e4ae2c51edf7c145d1b87bec4c344e'
          'SKIP')
 
 pkgver() {
-  cd "$srcdir/$pkgname"
+  cd "${srcdir}/${pkgname}"
   echo $(git rev-list --count HEAD).$(git rev-parse --short HEAD)
 }
 
 build() {
-  cd "$srcdir/$pkgname"
+  cd "${srcdir}/${pkgname}"
 
   # If required libraries or header files are in non-standard locations,
   # set CFLAGS and LDFLAGS environment variables accordingly.
@@ -68,9 +68,9 @@ build() {
 }
 
 package() {
-  cd "$srcdir/$pkgname"
+  cd "${srcdir}/${pkgname}"
 
-  make DESTDIR="$pkgdir/" install
+  make DESTDIR="${pkgdir}" install
 
   # slurm configs and license
   install -D -m644 etc/slurm.conf.example    "${pkgdir}/etc/slurm-llnl/slurm.conf.example"

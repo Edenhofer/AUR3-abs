@@ -11,7 +11,7 @@ license=('GPL3' 'LGPL3')
 depends=('openssl' 'bzip2')
 makedepends=('zlib')
 provides=('munge')
-install=${pkgname}.install
+install=$pkgname.install
 source=("http://munge.googlecode.com/files/$pkgname-$pkgver.tar.bz2"
         "arch_munge.init"
         "munged-tmpfiles.conf")
@@ -34,7 +34,7 @@ build() {
 package() {
   cd "$srcdir/$pkgname-$pkgver"
 
-  make DESTDIR="$pkgdir/" install
+  make DESTDIR="$pkgdir" install
 
   # install arch specific munge init and remove original one...
   rm -f $pkgdir/etc/init.d/munge
