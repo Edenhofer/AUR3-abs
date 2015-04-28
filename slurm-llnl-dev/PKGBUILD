@@ -3,8 +3,10 @@
 # Submitter: Fredrik Tegenfeldt <fredrik.tegenfeldt@unige.ch>
 
 pkgname=slurm-llnl-dev
-pkgver=15.08.0
-_subver="-0pre3"
+pkgver=15.08.0_0pre4
+# Hyphens (-) are prohibited however they are used by the package author
+# therefore it is necessary to invoke ${pkgver} like ${pkgver//_/-}
+# this will substituet any udnerscores (_) with hyphens 
 pkgrel=1
 pkgdesc="Simple Linux Utility for Resource Management (development version)"
 arch=('i686' 'x86_64')
@@ -36,16 +38,16 @@ source=("slurm-tmpfiles.conf"
         "slurmctld.service"
         "slurmd.service"
         "slurmdbd.service"
-        "http://www.schedmd.com/download/total/slurm-${pkgver}${_subver}.tar.bz2")
+        "http://www.schedmd.com/download/total/slurm-${pkgver//_/-}.tar.bz2")
 md5sums=('51e4ae2c51edf7c145d1b87bec4c344e'
          'cae664b8ef44d01783dade9088e25b53'
          '31899d7a4caaa7bdb8b987afae191b56'
          '1019f48ff4b19b4cbaf5cce00013e337'
          'cd89bfa37d6b3108fc17c531a27183a0'
-         '58e35f738a97af1e18f25e4651368bbf')
+         '2f1aa6f537bc530bce9c583b59ccb519')
 
 build() {
-  cd "${srcdir}/slurm-${pkgver}${_subver}"
+  cd "${srcdir}/slurm-${pkgver//_/-}"
 
   # If required libraries or header files are in non-standard locations,
   # set CFLAGS and LDFLAGS environment variables accordingly.
@@ -64,7 +66,7 @@ build() {
 }
 
 package() {
-  cd "${srcdir}/slurm-${pkgver}${_subver}"
+  cd "${srcdir}/slurm-${pkgver//_/-}"
 
   make DESTDIR="${pkgdir}" install
 
