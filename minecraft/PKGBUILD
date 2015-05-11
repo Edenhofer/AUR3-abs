@@ -1,0 +1,38 @@
+# Maintainer: Gordian Edenhofer <gordian.edenhofer[at]yahoo[dot]de>
+# Contributor: Christophe Robin <crobin[at]php[dot]net>
+
+pkgname=minecraft
+pkgver=latest
+pkgrel=24
+pkgdesc="An open-world game whose gameplay revolves around breaking and placing blocks"
+arch=(any)
+url="http://www.minecraft.net/"
+license=('custom')
+depends=('java-runtime' 'xorg-xrandr' 'ttf-font' 'libxtst')
+install=${pkgname}.install
+source=(http://s3.amazonaws.com/Minecraft.Download/launcher/Minecraft.jar
+        ${pkgname}
+        ${pkgname}.desktop
+        ${pkgname}.png
+        ${pkgname}.install
+        LICENSE)
+noextract=('minecraft.jar')
+md5sums=('85273e24404cc6865805f951487b8a1e'
+         '9652c0548bc2aec58039588fcec1e4e4'
+         'ecb1bd9b6e6305987b6fb5832ab0b468'
+         'dfecf76f9db4497399f4b7c171150c89'
+         'd59c5c6e28ea31383d6b481c893748e8'
+         'b82eddf7100b63e2fc52e53028327589')
+
+package() {
+    # Moving binaries in place
+    install -D -m755 "${srcdir}/minecraft"         "${pkgdir}/usr/bin/minecraft"
+    install -D -m644 "${srcdir}/Minecraft.jar"     "${pkgdir}/usr/share/minecraft/Minecraft.jar"
+
+    # Desktop launcher with icon
+    install -D -m644 "${srcdir}/minecraft.desktop" "${pkgdir}/usr/share/applications/minecraft.desktop"
+    install -D -m644 "${srcdir}/minecraft.png"     "${pkgdir}/usr/share/pixmaps/minecraft.png"
+
+    # License
+    install -D -m644 "${srcdir}/LICENSE"           "${pkgdir}/usr/share/licenses/minecraft/LICENSE"
+}
