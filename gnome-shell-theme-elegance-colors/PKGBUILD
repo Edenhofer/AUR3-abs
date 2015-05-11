@@ -1,0 +1,28 @@
+# Maintainer: Gordian Edenhofer <gordian.edenhofer[at]yahoo[dot]de
+# Contributor: satya164 <http://satya164.deviantart.com/>
+# Contributor: Martin Wimpress <code@flexion.org>
+# Contributor: Max Bruckner
+
+pkgname=gnome-shell-theme-elegance
+_pkgname=elegance-colors
+pkgver=3.0
+pkgrel=1
+epoch=1 # Bizarre previous naming scheme
+pkgdesc="A chameleon theme for Gnome Shell which can change colors according to the current GTK theme, current wallpaper (uses imagemagick to get color) or a user defined color."
+arch=('i686' 'x86_64')
+url="http://satya164.deviantart.com/art/Gnome-Shell-Elegance-263626995"
+license=('GPL3')
+depends=('gtk3' 'gnome-shell>=3.6' 'glib2' 'imagemagick')
+makedepends=('vala')
+conflicts=('gnome-shell-theme-elegance-colors-git')
+install="${_pkgname}.install"
+source=(${_pkgname}.tar.gz::"https://github.com/satya164/elegance-colors/archive/v${pkgver}.tar.gz")
+sha256sums=('9d05b6d351aa7e698678c5cd03c7105efe9f9632a451552d57cbbe7f4e23277f')
+
+build() {
+  make -C "${srcdir}/${_pkgname}-${pkgver}"
+}
+
+package() {
+  make -C "${srcdir}/${_pkgname}-${pkgver}" DESTDIR="${pkgdir}" install
+}
