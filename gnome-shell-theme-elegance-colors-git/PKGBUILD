@@ -4,15 +4,15 @@
 pkgname=gnome-shell-theme-elegance-colors-git
 _pkgname=elegance-colors
 pkgver=238.ca44e2f
-pkgrel=2
+pkgrel=3
 pkgdesc="A chameleon theme for Gnome Shell which can change colors according to the current GTK theme, current wallpaper (uses imagemagick to get color) or a user defined color."
 arch=('i686' 'x86_64')
 url="https://github.com/satya164/elegance-colors"
 license=('GPL3')
 depends=('gtk3' 'gnome-shell>=3.6' 'glib2' 'imagemagick')
 makedepends=('vala')
-conflicts=('gnome-shell-theme-elegance-colors')
-provides=('gnome-shell-theme-elegance-colors')
+conflicts=('gnome-shell-themes-elegance-colors')
+provides=('gnome-shell-themes-elegance-colors')
 install="${_pkgname}.install"
 source=(${_pkgname}::'git+https://github.com/satya164/elegance-colors.git')
 sha256sums=('SKIP')
