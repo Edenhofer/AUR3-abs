@@ -32,7 +32,6 @@ package() {
   cp -dpr --no-preserve=ownership ./Flattr "${pkgdir}"/usr/share/icons/
   cp -dpr --no-preserve=ownership ./Flattr\ Dark "${pkgdir}"/usr/share/icons/
   cp -dpr --no-preserve=ownership ./tools "${pkgdir}"/usr/share/icons/Flattr/
-  cp -dpr --no-preserve=ownership ./tools "${pkgdir}"/usr/share/icons/Flattr\ Dark/
 
   rm "${pkgdir}"/usr/share/icons/Flattr/LICENSE
 }
