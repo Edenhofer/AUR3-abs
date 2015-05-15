@@ -1,0 +1,10 @@
+# Ignore final packages if present anywhere in the tree
+*.pkg.tar.xz
+
+# Ignore src and pkg directories
+src/
+pkg/
+
+# Temporary Ignore List
+pulseaudio-equalizer-gtk/
+playonlinux/
