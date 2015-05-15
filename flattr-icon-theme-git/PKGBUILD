@@ -2,8 +2,7 @@
 # Submitter: Steffen L. Norgren (incongruous) <steffen[at]norgren[dot]ca>
 
 pkgname=flattr-icon-theme-git
-_pkgname=Flattr
-pkgver=532.9b6e403
+pkgver=552.e7670d0
 pkgrel=1
 pkgdesc="An icon theme for Linux desktops, the set is inspired by the latest flat design trend."
 arch=('any')
@@ -24,9 +23,16 @@ pkgver() {
 
 package() {
   cd "${srcdir}/${pkgname}"
-  install -dm755 "${pkgdir}"/usr/share/icons/${_pkgname}
+
   install -dm755 "${pkgdir}"/usr/share/licenses/${pkgname}
-  cp LICENSE "${pkgdir}"/usr/share/licenses/${pkgname}/
-  rm -rf {.git,.gitignore,CONTRIBUTORS,CREDITS,LICENSE,README.md}
-  cp -dpr --no-preserve=ownership . "${pkgdir}"/usr/share/icons/${_pkgname}/
+  install -dm755 "${pkgdir}"/usr/share/icons/Flattr
+  install -dm755 "${pkgdir}"/usr/share/icons/Flattr\ Dark
+
+  cp -dpr --no-preserve=ownership ./Flattr/LICENSE "${pkgdir}"/usr/share/licenses/${pkgname}/
+  cp -dpr --no-preserve=ownership ./Flattr "${pkgdir}"/usr/share/icons/
+  cp -dpr --no-preserve=ownership ./Flattr\ Dark "${pkgdir}"/usr/share/icons/
+  cp -dpr --no-preserve=ownership ./tools "${pkgdir}"/usr/share/icons/Flattr/
+  cp -dpr --no-preserve=ownership ./tools "${pkgdir}"/usr/share/icons/Flattr\ Dark/
+
+  rm "${pkgdir}"/usr/share/icons/Flattr/LICENSE
 }
