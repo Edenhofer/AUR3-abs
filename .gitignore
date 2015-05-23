@@ -1,5 +1,5 @@
 # Ignore final packages if present anywhere in the tree
-*.pkg.tar.xz
+*.tar.*
 
 # Ignore src and pkg directories
 src/
